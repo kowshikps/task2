@@ -3,7 +3,7 @@
     <head>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script>
-            $(document).ready(function () {
+            $(document).ready(function (){
                 $('#upload').on('click', function () {
                     var filename = $('#file').val();
                     var data = new FormData();
@@ -31,18 +31,17 @@
                         return false;
                     }
                 });
-            $(document).on('click','#delete',function() { {
-                console.log("here");
-                var values = new Array();
-                $.each($("input[name='checkbox[]']:checked"), function ()
-                {
-                    values.push($(this).val());
+                $(document).on('click','#delete',function() {
+                    console.log("here");
+                    var values = new Array();
+                    $.each($("input[name='checkbox[]']:checked"), function ()
+                    {
+                        values.push($(this).val());
+                    });
+                    console.log(values);
+                    window.location = 'http://localhost:8081/mywork/task2/delete.php?values=' + values;
+
                 });
-                console.log(values);
-                window.location = 'http://localhost:8081/mywork/task2/delete.php?values=' + values;
-
-
-            });
             });
         </script>
 
@@ -66,7 +65,8 @@
                 $host = "localhost";
                 $db = "task2";
                 $user = "root";
-                $pass = "";
+                //$pass = '';
+                $pass = 'root';
                 $connection = mysqli_connect($host, $user, $pass)
                         or die("Cudn't Connect To Server");
                 mysqli_select_db($connection, $db) or die(mysql_error());
