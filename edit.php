@@ -26,14 +26,14 @@ if (mysqli_num_rows($query) != 0) {
                     <input type="hidden" name="ID" value="<?php echo $id; ?>"/>
                     Id: <input type="text" name="id" value="<?php echo $id; ?>" readonly  id="id"/>
                     <br><br>
-                    Name: <input type="text" name="name" id="name1" value="<?php echo $name; ?>" onsubmit=" blockSpecialChar();"/>
+                    Name: <input type="text" name="name" id="name1" value="<?php echo $name; ?>" onkeypress=" return ((event.charCode >=97 && event.charCode <=122) || (event.charCode >=65 && event.charCode <=90))"/>
 
                     <br><br>
                     Email: <input type="email" name="email" id="name2" value="<?php echo $email ?>"/><a href ="javascript:checkemail();"></a>
                     <br><br>
                     <span id="email_status"></span>
 
-                    Age: <input type="text" name="age" id="name3"value="<?php echo $age ?>" onkeypress="return isNumber(evt);" />
+                    Age: <input type="text" name="age" id="name3"value="<?php echo $age ?>" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
                     <br><br>
                     City: <input type="text" name="city" id="name4" value="<?php echo $city ?>"  />
                     <br><br>
@@ -53,7 +53,7 @@ if (mysqli_num_rows($query) != 0) {
 }
 ?>
     
-   <script> function blockSpecialChar()
+   <!--<script> function blockSpecialChar()
     {
     var name=document.getElementById('name1').value;
                     if(blockSpecialChar(name)){
@@ -63,7 +63,7 @@ if (mysqli_num_rows($query) != 0) {
                        
                         
                     }
-                    <script>
+                    <script>-->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
             <script type="text/javascript">
                 function checkemail()
