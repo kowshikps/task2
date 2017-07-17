@@ -41,8 +41,9 @@ if ($_GET['value'] == 1) {
                             }
                         }
                     }
+                }
                     if ($i > 0) {
-                        echo " $i duplicate details found ";
+                        echo " $i duplicate details found\n ";
                     }
                     fclose($file);
 //        echo 'CSV File has been successfully Inserted';
@@ -51,7 +52,7 @@ if ($_GET['value'] == 1) {
             $sql = mysqli_query($connection, "SELECT * FROM udetails");
             $j++;
         }
-    }
+    
 }
 ?>
 
