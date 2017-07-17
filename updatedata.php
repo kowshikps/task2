@@ -2,14 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$host = 'localhost';
-$db_user = 'root';
-//$db_password = '';
-$db_password = 'root';
-$db = 'task2';
-$connection = mysqli_connect($host, $db_user, $db_password) or die(mysql_error());
-mysqli_select_db($connection, $db) or die(mysql_error());
-
+include('connection.php');
 $id = $_POST["id"];
 $name = $_POST["name"];
 $email = $_POST["email"];

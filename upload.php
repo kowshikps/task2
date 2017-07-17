@@ -1,15 +1,44 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$host="localhost";
-$db="task2";
-$user="root";
-$pass="";
+include('connection.php');
 
-$connection = mysqli_connect($host, $user, $pass)
-or die("Cudn't Connect To Server");
-mysqli_select_db($connection, $db) or die(mysql_error());
 
+if($_GET['value']==1)
+{	
+    $connection=mysqli_connect($host,$db_user,$db_password) or die (mysql_error());
+    mysqli_select_db($connection,$db) or die (mysql_error());
+if(isset($_POST['user_email']))
+{
+ $emailId=$_POST['user_email'];
+ $id = $_POST['id'];
+ $checkdata= mysqli_query($connection," SELECT * FROM udetails WHERE email='$emailId' and id <> $id");
+ if(mysqli_num_rows($checkdata)>0)
+ {
+  echo "\n Email Already Exist";
+ }
+ else
+ {
+  echo "updated";
+ }
+ exit();
+}
+
+}
+else if($_GET['value']==2){
+	
+
+
+foreach($_FILES["file"]["tmp_name"] as $key=>$tmp_name){
+    $temp = $_FILES["file"]["tmp_name"][$key];
+    $name = $_FILES["file"]["name"][$key];
+     
+    if(empty($temp))
+    {
+        break;
+    }
+	else
+	{
 $header1= array('name','email','age','city');
 $filename = $_FILES["file-0"]["tmp_name"];
 if ($_FILES["file-0"]["size"] > 0) {
@@ -43,6 +72,10 @@ if ($_FILES["file-0"]["size"] > 0) {
 }
 }
     $sql = mysqli_query($connection, "SELECT * FROM udetails");
+}
+}
+}
+
 ?>
 
 <!DOCTYPE html>

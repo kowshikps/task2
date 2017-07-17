@@ -18,7 +18,7 @@
                     {
                         $.ajax({
                             type: 'POST',
-                            url: 'upload.php',
+                            url: 'upload.php?value=2',
                             data: data,
                             contentType: false,
                             processData: false,
@@ -39,37 +39,32 @@
                         values.push($(this).val());
                     });
                     console.log(values);
-                    window.location = 'http://localhost:8081/mywork/task2/delete.php?values=' + values;
+                    window.location = 'http://localhost:8081/mywork/task2/updatedata.php?values=' + values;
 
                 });
             });
         </script>
 
     </head>
-    <body body bgcolor="#E6E6FA" > 
-        <h1><Marquee>Hello....</Marquee></h1><br><br>
-    <center><h2>Please upload your file to fetch data </h2></center>
+			<body body bgcolor="#E6E6FA" > 
+							<h1><Marquee>Hello....</Marquee></h1><br><br>
+				<center>	<h2>Please upload your file to fetch data </h2>		</center>
 
 
-    <form enctype="multipart/form-data" method="post">
-
-        <div class="form-group">
-            <center>  <input type="file" name="file" id="file" size="150" ><div id="error" ></div></center>
-            <center><p>Only Excel/CSV File Import.</p></center>
-        </div>
-        <center><button type="button"  class="btn btn-default" name="Import" value="Import" id="upload">Upload</button></center>
+				<center>	<form enctype="multipart/form-data" method="post">  
+							<div>
+							<label for='upload'>Add Attachments:</label>
+							<input type="file" name="file[]" id="file" size="150"  multiple>
+							</div>
+                 </center>
+            
+        
+    <center><button type="button"  class="btn btn-default" name="Import" value="Import" id="upload">Upload</button></center>
         <center>
 
             <div id="output">
                 <?php
-                $host = "localhost";
-                $db = "task2";
-                $user = "root";
-                //$pass = '';
-                $pass = 'root';
-                $connection = mysqli_connect($host, $user, $pass)
-                        or die("Cudn't Connect To Server");
-                mysqli_select_db($connection, $db) or die(mysql_error());
+				include('connection.php');
                 $sql = mysqli_query($connection, "SELECT * FROM udetails");
                 ?>
 
@@ -119,7 +114,7 @@
                     </table>
                     </head>
 
-                    <form action="delete.php">
+                    <form action="updatedata.php">
                         <input type="button" value="delete" id="delete"/></td>
                     </form>
 
