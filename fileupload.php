@@ -16,10 +16,14 @@
                         return false;
                     } else if (extension == 'csv' || extension == 'xlsx')
                     {
+                        var form = $('#formsubmit');
+                        var formdata = new FormData(form[0]);
                         $.ajax({
                             type: 'POST',
                             url: 'upload.php?value=2',
-                            data: data,
+                            cache:false,
+                            async:false,
+                            data: formdata,
                             contentType: false,
                             processData: false,
 
@@ -51,10 +55,10 @@
 				<center>	<h2>Please upload your file to fetch data </h2>		</center>
 
 
-				<center>	<form enctype="multipart/form-data" method="post">  
+                                <center>	<form enctype="multipart/form-data" method="post" id="formsubmit">  
 							<div>
 							<label for='upload'>Add Attachments:</label>
-							<input type="file" name="file[]" id="file" size="150"  multiple>
+							<input type="file" name="file[]" id="file" size="150"  multiple >
 							</div>
                  </center>
             
