@@ -8,15 +8,9 @@ $name = $_POST["name"];
 $email = $_POST["email"];
 $city = $_POST["city"];
 $age = $_POST["age"];
-//$sql = mysqli_query($connection, "Select * from udetails where email = '$email'");
-//if (mysqli_num_rows($sql) > 0) {
-//    echo "user exist";
-//    echo "<script>setTimeout(\"location.href = 'http://localhost:8081/mywork/task2/fileupload.php';\",1500);</script>";
-//} else {
 
     $query = mysqli_query($connection,
             "UPDATE udetails SET name = '$name', email = '$email', age = '$age', city = '$city' WHERE id='$id'");
-//}
 if (mysqli_affected_rows() >= 1) {
     echo "<p>($id) Record Updated<p>";
     header("Location: fileupload.php");
