@@ -5,14 +5,13 @@ include('connection.php');
 
 
 if ($_GET['value'] == 1) {
-    $connection = mysqli_connect($host, $db_user, $db_password) or die(mysql_error());
-    mysqli_select_db($connection, $db) or die(mysql_error());
+  
     if (isset($_POST['user_email'])) {
         $emailId = $_POST['user_email'];
         $id = $_POST['id'];
         $checkdata = mysqli_query($connection, " SELECT * FROM udetails WHERE email='$emailId' and id <> $id");
         if (mysqli_num_rows($checkdata) > 0) {
-            echo "\n Email Already Exist";
+            echo "\n Email  Exist";
         } else {
             echo "updated";
         }
@@ -41,8 +40,9 @@ if ($_GET['value'] == 1) {
                             }
                         }
                     }
+                }
                     if ($i > 0) {
-                        echo " $i duplicate details found ";
+                        echo " $i duplicate details found\n ";
                     }
                     fclose($file);
 //        echo 'CSV File has been successfully Inserted';
@@ -51,7 +51,7 @@ if ($_GET['value'] == 1) {
             $sql = mysqli_query($connection, "SELECT * FROM udetails");
             $j++;
         }
-    }
+    
 }
 ?>
 
@@ -97,7 +97,7 @@ while ($row = mysqli_fetch_array($sql)) {
                 </tbody>
             </table>
 
-            <input type="button" value="Delete" id="delete" action="delete.php" /></td>
+            <input type="button" value="Delete" id="delete" action="updatedata.php" /></td>
 </body>
 </html>
 

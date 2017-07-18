@@ -64,11 +64,9 @@
 
 
                                 <center>	<form enctype="multipart/form-data" method="post" id="formsubmit">  
-							<div>
+				
 							<label for='upload'>Add Attachments:</label>
-							<input type="file" name="file[]" id="file" size="150"  multiple >
-                            <span id="error" style="color: red"></span>
-							</div>
+							<input type="file" name="file[]" id="file" size="150"  multiple > <div id="error"  ></div>
                  </center>
             
         
