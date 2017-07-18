@@ -7,14 +7,20 @@
                 $('#upload').on('click', function () {
                     var filename = $('#file').val();
                     var data = new FormData();
-                    jQuery.each(jQuery('#file')[0].files, function (i, file) {
-                        data.append('file-' + i, file);
+                    var csvFormat = false;
+                    $.each($('#file')[0].files, function (i, file) {
+                        var name = file.name;
+                        var extension = name.substr(name.lastIndexOf('.') + 1).toLowerCase();
+                        if (extension == 'csv' || extension == 'xlsx') {
+                            data.append('file-' + i, file);
+                            x= file;
+                            csvFormat = true;
+                        }
                     });
-                    var extension = filename.substr(filename.lastIndexOf('.') + 1).toLowerCase();
                     if (filename == '' || filename == null) {
                         $('#error').html("Please  Upload File");
                         return false;
-                    } else if (extension == 'csv' || extension == 'xlsx')
+                    } else if (csvFormat)
                     {
                         var form = $('#formsubmit');
                         var formdata = new FormData(form[0]);
@@ -28,10 +34,12 @@
                             processData: false,
 
                         }).done(function (data) {
+                            data = "<p>update Successful</p><br/>".data;
                             $("#output").html(data);
                         });
+                        
                     } else {
-                        $('#error').html("Invalid File Format!");
+                        $('#error').html("Please upload at least one csv file");
                         return false;
                     }
                 });
@@ -59,6 +67,7 @@
 							<div>
 							<label for='upload'>Add Attachments:</label>
 							<input type="file" name="file[]" id="file" size="150"  multiple >
+                            <span id="error" style="color: red"></span>
 							</div>
                  </center>
             
